@@ -2,8 +2,27 @@ body {
   font-family: "Crete Round", serif;
 }
 
+div {
+  text-align: center;
+}
+
+div h1 {
+  margin-bottom: 50px;
+  font-size: 50px;
+  text-decoration: underline;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  margin: 0 auto;
+}
+
 li {
   list-style: none;
+  width: 60%;
+  margin-bottom: 50px;
 }
 
 li a {
