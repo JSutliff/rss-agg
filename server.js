@@ -16,11 +16,8 @@ app.set("view engine", "handlebars");
 var sourceUrls = [
   "https://cnnespanol.cnn.com/feed",
   "https://eldiariony.com/feed",
-  "https://www.eluniversal.com.mx/nacion/feed",
-  "https://laopinion.com/feed",
   "https://laopinion.com/feed",
   "https://peopleenespanol.com/noticias/feed",
-  "https://www.chron.com/rss/feed/News-270.php",
 ];
 
 var storyArr = [];
@@ -29,7 +26,11 @@ for (var i = 0; i < sourceUrls.length; i++) {
   (async () => {
     let feed = await parser.parseURL(sourceUrls[i]);
     feed.items.forEach((item) => {
-      storyArr.push({ title: item.title, link: item.guid });
+      if (sourceUrls[i] === "https://www.chron.com/rss/feed/News-270.php") {
+        storyArr.push({ title: item.title, link: item.url });
+      } else {
+        storyArr.push({ title: item.title, link: item.guid });
+      }
     });
     console.log(storyArr);
   })();
