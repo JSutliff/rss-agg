@@ -1,0 +1,24 @@
+{
+  "name": "rss-agg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSutliff/rss-agg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JSutliff/rss-agg/issues"
+  },
+  "homepage": "https://github.com/JSutliff/rss-agg#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "rss-parser": "^3.8.0"
+  }
+}
