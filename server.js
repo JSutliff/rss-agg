@@ -1,15 +1,48 @@
-const express = require("express");
-const htmlRoutes = require("./routes/htmlRoutes");
+var express = require("express");
+var exphbs = require("express-handlebars");
+var Parser = require("rss-parser");
 
-// Initialize the app and create a port
-const app = express();
-const PORT = process.env.PORT || 3000;
+var parser = new Parser();
 
-// Set up body parsing, static, and route middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+var app = express();
+
+var PORT = process.env.PORT || 3000;
+
 app.use(express.static("public"));
-app.use("/", htmlRoutes);
 
-// Start the server on the port
-app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+var sourceUrls = [
+  "https://cnnespanol.cnn.com/feed",
+  "https://eldiariony.com/feed",
+  "https://www.eluniversal.com.mx/nacion/feed",
+  "https://laopinion.com/feed",
+  "https://laopinion.com/feed",
+  "https://peopleenespanol.com/noticias/feed",
+  "https://www.chron.com/rss/feed/News-270.php",
+];
+
+var storyArr = [];
+
+for (var i = 0; i < sourceUrls.length; i++) {
+  (async () => {
+    let feed = await parser.parseURL(sourceUrls[i]);
+    feed.items.forEach((item) => {
+      storyArr.push({ title: item.title, link: item.guid });
+    });
+    console.log(storyArr);
+  })();
+}
+
+app.get("/", function (req, res) {
+  var data = {
+    storyArr,
+  };
+
+  res.render("index", data);
+});
+
+app.listen(PORT, function () {
+  console.log("App listening on PORT " + PORT);
+});

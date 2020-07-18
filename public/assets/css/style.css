@@ -1,0 +1,16 @@
+body {
+  font-family: "Crete Round", serif;
+}
+
+li {
+  list-style: none;
+}
+
+li a {
+  color: black;
+  text-decoration: none;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
