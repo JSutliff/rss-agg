@@ -14,14 +14,14 @@ div h1 {
 
 ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 80%;
+  grid-template-columns: 1fr;
+  width: 90%;
   margin: 0 auto;
 }
 
 li {
   list-style: none;
-  width: 60%;
+  width: 80%;
   margin-bottom: 50px;
 }
 
@@ -33,4 +33,10 @@ li a {
 
 li a:hover {
   text-decoration: underline;
+}
+
+@media only screen and (min-width: 780px) {
+  ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
